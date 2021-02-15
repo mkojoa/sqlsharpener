@@ -58,25 +58,27 @@ The generated .cs file will contain a class with functions for all your stored p
 
 # Usage
 
-Once the code is generated, your business layer can call it like any other function. Here is one example:
+```c#
+ //Once the code is generated, your business layer can call it like any other function. Here is one example:
 
-        public TaskGetDto Get(int id)
-        {
-            return storedProcedures.TaskGet(id);
-        }
-        
+ public TaskGetDto Get(int id)
+ {
+     return storedProcedures.TaskGet(id);
+ }
+```       
 # Dependency Injection
 
 If you use a dependency-injection framework such as Ninject, you can use the interface generated. For example:
+```c#
+  public class  DataModule : NinjectModule
+  {
+     public override void Load()
+     {
+        Bind<IStoredProcedures>().To<StoredProcedures>();
+     }
+  }
+  ```  
 
-    public class  DataModule : NinjectModule
-    {
-        public override void Load()
-        {
-            Bind<IStoredProcedures>().To<StoredProcedures>();
-        }
-    }
-    
 # Documentation
 
 Check out the [wiki](https://github.com/aeslinger0/sqlsharpener/wiki) for more info.
